@@ -22,6 +22,7 @@ This is a simple Tic Tac Toe game for iOS.
   `xcodebuild -project TestTictactoe.xcodeproj -scheme TestTictactoe -destination 'platform=iOS Simulator,name=<iPhone 17>' test`
 - List available simulators: `xcrun simctl list devices available`
 - Lint (if SwiftLint is installed): `swiftlint`
+- Record demo video: `scripts/record-demo.sh` (writes `artifacts/demo.mp4`)
 
 ## Project Structure
 - `TestTictactoe/App/` - app entry point
@@ -39,6 +40,13 @@ This is a simple Tic Tac Toe game for iOS.
 - Do not force unwrap (`!`). For test, please mark it as failed with comments when failed to unwrapping.
 - Tasks are provided as files in `docs/tasks/`
 - Use open source only for definitely needed. Please do not use for URLSession things.
+
+## Pull requests
+- PRs that change the UI or game flow must include a simulator demo video that plays inline in the PR description.
+- Record it with `scripts/record-demo.sh`; keep `testDemoCompleteGame` in sync with the UI flow.
+- Embed it with GitHub CLI 2.99.0 or later: `gh pr create --attach ./artifacts/demo.mp4` (or `gh pr edit <n> --attach ...`).
+- Never commit video files (`artifacts/` is git-ignored) and do not use GitHub Release assets for videos.
+- Claude Code: use the `/pr-with-demo` skill (`.claude/skills/pr-with-demo/SKILL.md`).
 
 ## Do not
 - Do not edit `project.pbxproj` by hand unless explicitly asked.
