@@ -28,3 +28,6 @@ fastlane/test_output
 .env
 *.xcconfig.local
 Secrets.xcconfig
+
+# Local demo recordings and other generated artifacts
+artifacts/
