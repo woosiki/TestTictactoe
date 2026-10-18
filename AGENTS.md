@@ -42,7 +42,10 @@ This is a simple Tic Tac Toe game for iOS.
 - Use open source only for definitely needed. Please do not use for URLSession things.
 
 ## Pull requests
-- PRs that change the UI or game flow must include a simulator demo video that plays inline in the PR description.
+- Attach a simulator demo video (playing inline in the PR description) when the PR changes UI or logic,
+  i.e. any app source under `TestTictactoe/` (views, view models, models, services, reducers).
+- No video is needed when only configuration changes, e.g. `AGENTS.md`/`CLAUDE.md`, docs, `.github/`,
+  `.claude/`, `scripts/`, `.gitignore`, or build settings.
 - Record it with `scripts/record-demo.sh`; keep `testDemoCompleteGame` in sync with the UI flow.
 - Embed it with GitHub CLI 2.99.0 or later: `gh pr create --attach ./artifacts/demo.mp4` (or `gh pr edit <n> --attach ...`).
 - Never commit video files (`artifacts/` is git-ignored) and do not use GitHub Release assets for videos.

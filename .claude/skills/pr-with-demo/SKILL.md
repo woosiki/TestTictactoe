@@ -1,12 +1,22 @@
 ---
 name: pr-with-demo
-description: Open a pull request with a simulator demo video embedded as an inline player. Use when creating a PR for changes that affect the UI or game flow, or when asked to attach/record a demo video for a PR.
+description: Open a pull request with a simulator demo video embedded as an inline player. Use when creating a PR that changes UI or logic (app source under TestTictactoe/), or when asked to attach/record a demo video for a PR. Not needed for configuration-only PRs.
 ---
 
 # PR with demo video
 
 Creates a PR whose description plays the demo video inline on GitHub.
 The video is uploaded with `gh --attach` and is **never committed**.
+
+## 0. Decide whether a video is needed
+
+Check the changed files: `git diff --name-only origin/main...HEAD`.
+
+- **Video required:** any change to app source under `TestTictactoe/` — UI (views) or logic
+  (view models, models, services, reducers).
+- **No video:** configuration-only changes — `AGENTS.md`/`CLAUDE.md`, docs, `.github/`, `.claude/`,
+  `scripts/`, `.gitignore`, build settings.
+  Create the PR normally with `gh pr create` (omit the Demo video section) and stop here.
 
 ## 1. Preconditions
 
@@ -21,7 +31,7 @@ The video is uploaded with `gh --attach` and is **never committed**.
 ## 2. Keep the demo test in sync
 
 `TestTictactoeUITests.testDemoCompleteGame` is the script that gets recorded.
-If this PR changes the UI flow, update that test in the same PR so the video shows the new behavior.
+If this PR changes the UI flow or game logic, update that test in the same PR so the video shows the new behavior.
 Each interaction must be followed by a delay of at least 1 second (currently 1.5 s).
 The test only runs when `DEMO_MODE=1`; normal test runs skip it.
 
